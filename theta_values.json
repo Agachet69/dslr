@@ -1,0 +1,34 @@
+{
+    "Slytherin": {
+        "Astronomy": -0.1944644575070918,
+        "Herbology": -0.7179369202560483,
+        "Defense Against the Dark Arts": 0.19256985135497556,
+        "Divination": -1.0679996051127503,
+        "History of Magic": 0.11923005215181724,
+        "Flying": -0.4334297701465789
+    },
+    "Ravenclaw": {
+        "Astronomy": -0.7697548949498039,
+        "Herbology": 0.5993694229580838,
+        "Defense Against the Dark Arts": 0.776583920186055,
+        "Divination": 0.6903150008360195,
+        "History of Magic": 0.05579887827160183,
+        "Flying": 0.17396906093169345
+    },
+    "Gryffindor": {
+        "Astronomy": 0.20876401484946192,
+        "Herbology": -0.7240941187799335,
+        "Defense Against the Dark Arts": -0.2047935396590826,
+        "Divination": 0.19562063371369284,
+        "History of Magic": -0.862565465279427,
+        "Flying": 0.8783066982063629
+    },
+    "Hufflepuff": {
+        "Astronomy": 0.8728010262699686,
+        "Herbology": 0.6032735332546265,
+        "Defense Against the Dark Arts": -0.8749918562515604,
+        "Divination": 0.11027980502990879,
+        "History of Magic": 0.5439552405146117,
+        "Flying": -0.5312849189120874
+    }
+}
