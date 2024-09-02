@@ -57,40 +57,16 @@ else :
     if not os.path.isfile(sys.argv[1]):
         print("File not found.")
     else:
-        # try:
+        try:
             DATASET_PATH = sys.argv[1]
 
             with open_file(sys.argv[1]) as file:
                 file_data = transform_file_data(parse_file(file))
-            
-            for index in range(DATASET_LENGTH):
-                INPUT_DATA.append({feature: 0 for feature in FEATURES})
-                INPUT_DATA_NO_NORMALIZE.append({feature: 0 for feature in FEATURES})
-                # INPUT_DATA[index]["biais"] = 1
-                OUTPUT_DATA.append(file_data[index]["Hogwarts House"])
+            for index in range(len(file_data)):
                 for feature in FEATURES:
-                    values = [
-                        item[feature] if item[feature] else 0 for item in file_data
-                    ]
+                    value = file_data[index][feature] if file_data[index][feature] else 0
+                    file_data[index][feature] = (value - theta_data[feature]['mean']) / theta_data[feature]['std']
 
-                    min_val = min(values)
-                    max_val = max(values)
-
-                    mean = sum(values) / DATASET_LENGTH
-
-                    sum_squares = 0
-                    for i in range(len(values)):
-                        sum_squares += (values[i] - mean) ** 2
-                    std = sum_squares / (DATASET_LENGTH - 1)
-                    std = std**0.5
-
-                    FEATURE_INFO[feature]["std"] = std
-                    FEATURE_INFO[feature]["mean"] = mean
-
-                    INPUT_DATA_NO_NORMALIZE[index][feature] = values[index]
-                    INPUT_DATA[index][feature] = (values[index] - mean) / std
-
-            print(file_data)
             for house in HOUSES:
                 probabilities = []
                 for i in range(len(file_data)):
@@ -98,12 +74,10 @@ else :
                         house: sigmoid(dot_product(file_data[i], theta_data[house]))
                         for house in HOUSES
                     }
-                    # print(house_probs)
                     probabilities.append(max(house_probs, key=house_probs.get))
-            # print(theta_data)
             df = pandas.DataFrame(probabilities, columns=['Hogwarts House'])
             df.to_csv('houses.csv', index_label='Index')
             print('You can find your prediction in the houses.csv file.')
         
-        # except:
-        #     exit('Error with tests datas.')
+        except:
+            exit('Error with tests datas.')

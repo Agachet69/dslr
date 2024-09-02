@@ -136,22 +136,6 @@ else:
             print("Config Data Creating...")
             file_data = transform_file_data(parse_file(file))
 
-            BEST_FEATURE_FOR_NOW = {
-                # "Arithmancy",
-                "Astronomy",
-                "Herbology",
-                "Defense Against the Dark Arts",
-                "Divination",
-                # "Muggle Studies",
-                # "Ancient Runes",
-                "History of Magic",
-                # "Transfiguration",
-                # "Potions",
-                # "Care of Magical Creatures",
-                # "Charms",
-                "Flying",
-            }
-
             FEATURES = [
                 # "Arithmancy",
                 "Astronomy",
@@ -283,8 +267,11 @@ else:
             )
 
             try:
+                merged_data = all_theta.copy()
+                merged_data.update(FEATURE_INFO)
+                
                 with open("theta_values.json", "w") as fichier:
-                    json.dump(all_theta, fichier, indent=4)
+                    json.dump(merged_data, fichier, indent=4)
             except IOError as e:
                 print(f"Erreur d'écriture dans le fichier: {e}")
             
@@ -300,13 +287,14 @@ else:
             # )
             # print(len(OUTPUT_TESTING_DATA))
 
-            # TrainingVisualization(
-            #     INPUT_DATA_NO_NORMALIZE,
-            #     ALL_OUTPUT_DATA,
-            #     FEATURES,
-            #     FEATURE_INFO,
-            #     all_theta,
-            # )
+            TrainingVisualization(
+                INPUT_DATA_NO_NORMALIZE,
+                ALL_OUTPUT_DATA,
+                FEATURES,
+                FEATURE_INFO,
+                all_theta,
+            )
+            # print(FEATURE_INFO)
 
             print(precision)
 
